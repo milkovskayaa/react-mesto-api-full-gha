@@ -1,0 +1,18 @@
+.error-message {
+  color: #ff0000;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+  padding-top: 5px;
+  min-height: 30px;
+  max-width: 358px;
+  display: block;
+  visibility: hidden;
+}
+
+@media screen and (max-width:500px) {
+  .error-message {
+    max-width: 238px;
+  }
+}

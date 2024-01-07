@@ -1,0 +1,11 @@
+.login__subtitle {
+  max-width: 358px;
+  width: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #fff;
+  text-align: center;
+  margin: 15px 0 0 0;
+}

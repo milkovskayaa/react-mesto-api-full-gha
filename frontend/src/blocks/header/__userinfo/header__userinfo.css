@@ -1,0 +1,8 @@
+.header__userinfo {
+  font-weight: 500;
+}
+
+.header__userinfo:hover {
+  opacity: 1;
+  cursor: default;
+}
