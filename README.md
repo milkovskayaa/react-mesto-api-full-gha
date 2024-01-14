@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.8.66
 
-Frontend https://...
+Frontend https://tmalceva.nomoredomainsmonster.ru
 
-Backend https://...
+Backend https://api.tmalceva.nomoredomainsmonster.ru

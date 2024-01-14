@@ -1,6 +1,6 @@
 import checkResponse from './checkResponse.js';
 
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = 'http://localhost:3000';
 
 // запрос для регистрации
 export const register = (email, password) => {

@@ -15,7 +15,7 @@ export class Api {
   // получение информации о пользователе с сервера
   getInfoProfile() {
     return fetch(`${this._url}/users/me`, {
-      method: "GET",
+      method: 'GET',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -23,14 +23,14 @@ export class Api {
   // получение карточек с сервера
   getCards() {
     return fetch(`${this._url}/cards`, {
-      method: "GET",
+      method: 'GET',
       headers: this._headers,
     }).then(this._handleResponse);
   }
   // добавление новой карточки
   postNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
-      method: "POST",
+      method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -42,7 +42,7 @@ export class Api {
   // обновление аватара пользователя
   updateAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         avatar: avatar,
@@ -52,7 +52,7 @@ export class Api {
   // обновление информации о пользователе
   updateUserInfo(name, about) {
     return fetch(`${this._url}/users/me`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -64,7 +64,7 @@ export class Api {
   // удаление карточки
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -72,7 +72,7 @@ export class Api {
   // постановка лайка на карточку
   onLikeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "PUT",
+      method: 'PUT',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -80,18 +80,14 @@ export class Api {
   // снятие лайка с карточки
   deleteLikeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: this._headers,
     }).then(this._handleResponse);
   }
 }
 
 const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-72",
-  headers: {
-    authorization: "9b32332c-f0f6-42bc-b5ec-b67db254adaa",
-    "Content-Type": "application/json",
-  },
+  url: 'http://localhost:3000',
 });
 
 export default api;

@@ -37,6 +37,7 @@ function App() {
 
   React.useEffect(() => {
     tokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
   // функция проверки токена пользователя
@@ -48,7 +49,7 @@ function App() {
         .then((res) => {
           if (res) {
             setUserData({
-              email: res.data.email,
+              email: res.email,
             });
             setLoggedIn(true);
             navigate("/my-profile", { replace: true });
