@@ -14,24 +14,33 @@ export class Api {
 
   // получение информации о пользователе с сервера
   getInfoProfile() {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._handleResponse);
   }
 
   // получение карточек с сервера
   getCards() {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/cards`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._handleResponse);
   }
   // добавление новой карточки
   postNewCard(name, link) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: name,
         link: link,
@@ -41,9 +50,12 @@ export class Api {
 
   // обновление аватара пользователя
   updateAvatar(avatar) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         avatar: avatar,
       }),
@@ -51,9 +63,12 @@ export class Api {
   }
   // обновление информации о пользователе
   updateUserInfo(name, about) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: name,
         about: about,
@@ -63,25 +78,34 @@ export class Api {
 
   // удаление карточки
   deleteCard(cardId) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._handleResponse);
   }
 
   // постановка лайка на карточку
   onLikeCard(cardId) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._handleResponse);
   }
 
   // снятие лайка с карточки
   deleteLikeCard(cardId) {
+    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._handleResponse);
   }
 }
