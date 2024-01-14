@@ -51,8 +51,13 @@ function App() {
             setUserData({
               email: res.email,
             });
-            setLoggedIn(true);
-            navigate("/my-profile", { replace: true });
+            api
+              .getInfoProfile(localStorage.getItem('token')).then((res) => {
+                setCurrentUser(res);
+              })
+              .catch(console.error);
+          setLoggedIn(true);
+          navigate("/my-profile", { replace: true });
           }
         })
         .catch(console.error);
@@ -61,30 +66,32 @@ function App() {
 
   // функция выхода из системы
   const signOut = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setUserData("");
     navigate("/sign-in", { replace: true });
   };
 
   // получение карточек с сервера
   React.useEffect(() => {
-    api
-      .getCards()
+    if (loggedIn) {
+      api
+      .getCards(localStorage.getItem('token'))
       .then((cards) => {
         setCards(cards);
       })
       .catch(console.error);
-  }, []);
+    }
+  }, [loggedIn]);
 
-  // получение данных о пользователе с сервера
-  React.useEffect(() => {
-    api
-      .getInfoProfile()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch(console.error);
-  }, []);
+  // // получение данных о пользователе с сервера
+  // React.useEffect(() => {
+  //   api
+  //     .getInfoProfile()
+  //     .then((userData) => {
+  //       setCurrentUser(userData);
+  //     })
+  //     .catch(console.error);
+  // }, []);
 
   // лайки карточек
   function handleCardLike(card) {
