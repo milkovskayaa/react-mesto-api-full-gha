@@ -7,6 +7,8 @@ const BadRequestError = require('../errors/bad-req-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const ConflictError = require('../errors/conflict-err');
 
+const JWT_SECRET = process.env.JWT_SECRET || 'some-secret-key';
+
 // получить всех пользователей
 const getUsers = (req, res, next) => {
   User.find({})
@@ -130,7 +132,7 @@ const login = (req, res, next) => {
         });
     })
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
       res.send({ token });
     })
     .catch((err) => next(err));
