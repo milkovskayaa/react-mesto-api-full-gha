@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
@@ -14,6 +15,12 @@ const {
   DB_URL = process.env.DB_URL || 'mongodb://127.0.0.1:27017/mestodb',
 } = process.env;
 
+const corseAllowedOrigins = [
+  'http://tmalceva.nomoredomainsmonster.ru',
+  'https://tmalceva.nomoredomainsmonster.ru',
+  'http://localhost:3001',
+];
+
 // подключение к базе данных
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
@@ -22,6 +29,13 @@ mongoose.connect(DB_URL, {
 });
 
 const app = express();
+
+app.use(cors({
+  origin: corseAllowedOrigins,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use(requestLogger);
 
