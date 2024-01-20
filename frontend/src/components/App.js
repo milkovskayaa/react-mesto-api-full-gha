@@ -42,7 +42,7 @@ function App() {
 
   // функция проверки токена пользователя
   const tokenCheck = () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
       auth
         .getContent(token)
@@ -57,7 +57,7 @@ function App() {
               })
               .catch(console.error);
           setLoggedIn(true);
-          navigate("/my-profile", { replace: true });
+          navigate('/my-profile', { replace: true });
           }
         })
         .catch(console.error);
@@ -67,8 +67,8 @@ function App() {
   // функция выхода из системы
   const signOut = () => {
     localStorage.removeItem('token');
-    setUserData("");
-    navigate("/sign-in", { replace: true });
+    setUserData('');
+    navigate('/sign-in', { replace: true });
   };
 
   // получение карточек с сервера
@@ -128,6 +128,7 @@ function App() {
       })
       .catch(console.error);
   }
+  
   // обновление информации о пользователе
   function handleUpdateUser(data) {
     api
