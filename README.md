@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.8.66
+IP 158.160.8.66
 
 Frontend https://tmalceva.nomoredomainsmonster.ru
 
