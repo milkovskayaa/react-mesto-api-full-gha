@@ -8,6 +8,8 @@ const {
   getUserInfo,
 } = require('../controllers/users');
 
+const patternURL = /^((http|https):\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,6})+[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]*$/;
+
 userRouter.get('/', getUsers);
 userRouter.get('/me', getUserInfo);
 
@@ -26,7 +28,7 @@ userRouter.patch('/me', celebrate({
 
 userRouter.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().pattern(/(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/),
+    avatar: Joi.string().pattern(patternURL),
   }),
 }), updateAvatar);
 

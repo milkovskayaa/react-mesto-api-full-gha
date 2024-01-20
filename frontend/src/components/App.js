@@ -52,7 +52,7 @@ function App() {
               email: res.email,
             });
             api
-              .getInfoProfile(localStorage.getItem('token')).then((res) => {
+              .getInfoProfile(token).then((res) => {
                 setCurrentUser(res);
               })
               .catch(console.error);
@@ -83,22 +83,12 @@ function App() {
     }
   }, [loggedIn]);
 
-  // // получение данных о пользователе с сервера
-  // React.useEffect(() => {
-  //   api
-  //     .getInfoProfile()
-  //     .then((userData) => {
-  //       setCurrentUser(userData);
-  //     })
-  //     .catch(console.error);
-  // }, []);
-
   // лайки карточек
   function handleCardLike(card) {
-    const isLiked = card.likes.some((item) => item._id === currentUser._id);
+    const isLiked = card.likes.some((item) => item === currentUser._id);
     if (!isLiked) {
       api
-        .onLikeCard(card._id)
+        .onLikeCard(card._id, localStorage.getItem('token'))
         .then((newCard) => {
           setCards((state) =>
             state.map((c) => (c._id === card._id ? newCard : c))
@@ -107,7 +97,7 @@ function App() {
         .catch(console.error);
     } else {
       api
-        .deleteLikeCard(card._id)
+        .deleteLikeCard(card._id, localStorage.getItem('token'))
         .then((newCard) => {
           setCards((state) =>
             state.map((c) => (c._id === card._id ? newCard : c))
@@ -120,7 +110,7 @@ function App() {
   // удаление карточки
   function handleCardDelete(card) {
     api
-      .deleteCard(card._id)
+      .deleteCard(card._id, localStorage.getItem('token'))
       .then(() => {
         setCards((state) => {
           return state.filter((c) => c._id !== card._id);
@@ -132,7 +122,7 @@ function App() {
   // обновление информации о пользователе
   function handleUpdateUser(data) {
     api
-      .updateUserInfo(data.name, data.description)
+      .updateUserInfo(data.name, data.description, localStorage.getItem('token'))
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -143,7 +133,7 @@ function App() {
   // обновление аватара
   function handleUpdateAvatar(data) {
     api
-      .updateAvatar(data.avatar)
+      .updateAvatar(data.avatar, localStorage.getItem('token'))
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -154,7 +144,7 @@ function App() {
   // добавление карточки
   function handleAddPlaceSubmit(data) {
     api
-      .postNewCard(data.cardName, data.cardImageLink)
+      .postNewCard(data.cardName, data.cardImageLink, localStorage.getItem('token'))
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();

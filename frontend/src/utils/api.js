@@ -13,33 +13,33 @@ export class Api {
   }
 
   // получение информации о пользователе с сервера
-  getInfoProfile() {
-    const token = localStorage.getItem('jwt');
+  getInfoProfile(token) {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
     }).then(this._handleResponse);
   }
 
   // получение карточек с сервера
-  getCards() {
-    const token = localStorage.getItem('jwt');
+  getCards(token) {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
     }).then(this._handleResponse);
   }
   // добавление новой карточки
-  postNewCard(name, link) {
-    const token = localStorage.getItem('jwt');
+  postNewCard(name, link, token) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
       body: JSON.stringify({
         name: name,
@@ -49,12 +49,12 @@ export class Api {
   }
 
   // обновление аватара пользователя
-  updateAvatar(avatar) {
-    const token = localStorage.getItem('jwt');
+  updateAvatar(avatar, token) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
       body: JSON.stringify({
         avatar: avatar,
@@ -62,12 +62,12 @@ export class Api {
     }).then(this._handleResponse);
   }
   // обновление информации о пользователе
-  updateUserInfo(name, about) {
-    const token = localStorage.getItem('jwt');
+  updateUserInfo(name, about, token) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
       body: JSON.stringify({
         name: name,
@@ -77,34 +77,34 @@ export class Api {
   }
 
   // удаление карточки
-  deleteCard(cardId) {
-    const token = localStorage.getItem('jwt');
+  deleteCard(cardId, token) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
     }).then(this._handleResponse);
   }
 
   // постановка лайка на карточку
-  onLikeCard(cardId) {
-    const token = localStorage.getItem('jwt');
+  onLikeCard(cardId, token) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
     }).then(this._handleResponse);
   }
 
   // снятие лайка с карточки
-  deleteLikeCard(cardId) {
-    const token = localStorage.getItem('jwt');
+  deleteLikeCard(cardId, token) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
       },
     }).then(this._handleResponse);
   }

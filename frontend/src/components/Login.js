@@ -27,6 +27,7 @@ function Login({ handleLogin }) {
     auth
       .authorize(formValue.email, formValue.password)
       .then((data) => {
+        console.log(data)
         if (data.token) {
           setFormValue({ email: "", password: "" });
           handleLogin();
