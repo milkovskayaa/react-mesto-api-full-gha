@@ -111,7 +111,7 @@ export class Api {
 }
 
 const api = new Api({
-  url: 'http://localhost:3000',
+  url: 'https://api.tmalceva.nomoredomainsmonster.ru',
 });
 
 export default api;
