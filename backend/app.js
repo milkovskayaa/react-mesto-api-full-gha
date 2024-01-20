@@ -13,7 +13,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const patternURL = /^((http|https):\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,6})+[a-zA-Z0-9-._~:/?#[\]@!$&'()*+,;=]*$/;
 
 const {
-  PORT = 3000,
+  PORT = process.env.PORT || 3000,
   DB_URL = process.env.DB_URL || 'mongodb://127.0.0.1:27017/mestodb',
 } = process.env;
 
