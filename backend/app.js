@@ -17,11 +17,11 @@ const {
   DB_URL = process.env.DB_URL || 'mongodb://127.0.0.1:27017/mestodb',
 } = process.env;
 
-const corseAllowedOrigins = [
-  'http://tmalceva.nomoredomainsmonster.ru',
-  'https://tmalceva.nomoredomainsmonster.ru',
-  'http://localhost:3001',
-];
+// const corseAllowedOrigins = [
+//   'http://tmalceva.nomoredomainsmonster.ru',
+//   'https://tmalceva.nomoredomainsmonster.ru',
+//   'http://localhost:3000',
+// ];
 
 // подключение к базе данных
 mongoose.connect(DB_URL, {
@@ -31,12 +31,13 @@ mongoose.connect(DB_URL, {
 });
 
 const app = express();
+app.use(cors());
 
-app.use(cors({
-  origin: corseAllowedOrigins,
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: corseAllowedOrigins,
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true,
+// }));
 
 app.use(express.json());
 app.use(requestLogger);
