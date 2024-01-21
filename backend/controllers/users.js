@@ -76,10 +76,6 @@ const updateProfile = (req, res, next) => {
       return res.status(200).send(user);
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        next(BadRequestError('Некорректный ID'));
-        return;
-      }
       if (err.name === 'ValidationError') {
         next(BadRequestError('Введены некорректные данные'));
         return;
@@ -106,8 +102,8 @@ const updateAvatar = (req, res, next) => {
       return res.status(200).send(user);
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        next(BadRequestError('Некорректный ID'));
+      if (err.name === 'ValidationError') {
+        next(BadRequestError('Введены некорректные данные'));
         return;
       }
       next(err);
